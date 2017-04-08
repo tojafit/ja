@@ -27,9 +27,12 @@ def home():
 
 
 # GET method to check if the team name is already taken.
-@app.route('/checkTeamName/<string:teamName>')
-def check_team_name(teamName):
-    pass
+@app.route('/checkTeamName/<string:team_name>')
+def check_team_name(team_name):
+    for team in teams:
+        if team['name'] == team_name:
+            return jsonify(False)
+    return jsonify(True)
 
 
 # POST method to create new team. This method requires unique teamName.

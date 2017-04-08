@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -21,7 +21,6 @@ teams = [
 ]
 
 
-
 @app.route('/')  # 'http://www.tojafit.com/'
 def home():
     return "Hello, world!"
@@ -36,7 +35,13 @@ def check_team_name(teamName):
 # POST method to create new team. This method requires unique teamName.
 @app.route('/createTeam', methods=['POST'])
 def create_team():
-    pass
+    request_data = request.get_json()
+    new_team = {
+        'name' : request_data['name']
+    }
+    teams.append(new_team)
+    return jsonify(new_team)
+
 
 
 @app.route('/getTeamList')

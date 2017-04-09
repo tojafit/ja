@@ -57,6 +57,21 @@ def get_team_list():
 
 @app.route('/joinTeam',methods=['POST'])
 def join_team():
-    pass
+    flag = False
+    request_data = request.get_json()
+    team_name = request_data['team_name']
+    print(team_name)
+    new_member = {
+        'email' : request_data['email']
+    }
+    for team in organizations['teams']:
+        print("inside loop")
+        if team['name'] == team_name:
+            team['members'].append(new_member)
+            flag = True
+    if flag:
+        return jsonify(organizations)
+
+    return jsonify('Failure')
 
 app.run(port=5000)

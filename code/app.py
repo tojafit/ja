@@ -1,9 +1,10 @@
 from flask import Flask, request
-from flask.ext.pymongo import PyMongo
+from mongo_connect import mongo
 from flask_restful import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
+
 
 organizations = {
     'org_name' : '',

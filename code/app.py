@@ -1,24 +1,23 @@
 from flask import Flask, request
+from flask.ext.pymongo import PyMongo
 from flask_restful import Resource, Api
 
 app = Flask(__name__)
 api = Api(app)
 
 organizations = {
+    'org_name' : '',
     'teams' : [
         {
             'name' : 'team1',
             'members' : [
                 {
-                    'email' : 'stengali'
-                },
-                {
-                    'email' : 'aggarwal'
+                    'name' : 'sandeep',
+                    'email' : 'stengali',
+                    'device_name' : 'fitbit',
+
                 }
             ]
-        },
-        {
-            'name' : 'team2'
         }
     ]
 }
